@@ -85,8 +85,20 @@ function ExpensesScreen({params}) {
 
   return (
     <div className='p-10'>
-      <h2 className='text-2xl font-bold flex justify-between items-center'>My Expenses
-     <div className='flex gap-2 items-center'>
+<h2 className='text-2xl font-bold flex justify-between items-center'>{budgetInfo?.name}
+
+      </h2>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+      <BudgetItem
+      budget={budgetInfo}
+      />
+      <AddExpense budgetId={params.id}
+      user={user}
+      refreshData={()=>getBudgetInfo()}
+      />
+
+      </div>
+      <div className='flex gap-2 items-center '>
 <EditBudget budgetInfo={budgetInfo}
   refreshData={()=>getBudgetInfo()}
 />
@@ -111,17 +123,6 @@ function ExpensesScreen({params}) {
 </AlertDialog>
 </div>
 
-      </h2>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-      <BudgetItem
-      budget={budgetInfo}
-      />
-      <AddExpense budgetId={params.id}
-      user={user}
-      refreshData={()=>getBudgetInfo()}
-      />
-
-      </div>
       <div className='mt-4'>
         <h2 font-bold text-lg>Latest Expenses</h2>
         <ExpenseListTable expensesList={expensesList}

@@ -10,19 +10,21 @@ import moment from 'moment';
 function AddExpense({budgetId,user, refreshData}) {
     const [name,setName]=useState();
     const [amount,setAmount]=useState();
-    const addNewExpense=async () => {
-        const result=await db.insert(Expenses).values({
-        name:name,
-        amount:amount,
-        budgetId:budgetId,
-        createdBy:user?.primaryEmailAddress?.emailAddress
-        }).returning({insertedId:Budgets.id});
-
-        if(result){
+    const addNewExpense = async () => {
+        const result = await db.insert(Expenses).values({
+            name: name,
+            amount: amount,
+            budgetId: budgetId,
+            createdBy: user?.primaryEmailAddress?.emailAddress,
+            date: new Date() // Set the current date as the expense date
+        }).returning({ insertedId: Expenses.id }); // Use Expenses.id instead of Budgets.id
+    
+        if (result) {
             refreshData();
-            toast('New Expense Added!')
+            toast('New Expense Added!');
         }
     }
+    
   return (
     <div className='border p-5 rounded-lg'>
         <h2 className='font-bold text-lg'>Add Expense</h2>

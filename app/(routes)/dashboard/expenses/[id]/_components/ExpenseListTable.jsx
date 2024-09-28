@@ -20,22 +20,24 @@ function ExpenseListTable({expensesList,refreshData}) {
     }
   return (
     <div className='mt-3'>
-        <div className='grid grid-cols-4 bg-slate-200 p-2'>
+        <div className='grid grid-cols-5 bg-slate-200 p-2'>
             <h2>Name</h2>
             <h2>Amount</h2>
-            <h2>Date</h2>
-            <h2>Action</h2>
+            <h2>date</h2>
+            <h2>createdBy</h2>
+            <h2 className='ml-10'>Action</h2>
         </div>
         {expensesList.map((expenses,index)=>(
-             <div className='grid grid-cols-4 bg-slate-200 p-2'>
+             <div className='grid grid-cols-5 bg-slate-200 p-2'>
              <h2>{expenses.name}</h2>
              <h2>{expenses.amount}</h2>
+             <h2> {expenses.date}</h2>
              <h2>{expenses.createdBy}</h2>
              <h2>
-                <Trash className='text-red-600 cursor-pointer'
-                onClick={()=>deleteExpense(expenses)}
-                />
-             </h2>
+                    <Trash className='text-red-600 cursor-pointer ml-10'
+                        onClick={() => deleteExpense(expenses)}
+                    />
+            </h2>
          </div>
         ))}
         
