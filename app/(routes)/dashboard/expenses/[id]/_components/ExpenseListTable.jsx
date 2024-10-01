@@ -23,8 +23,8 @@ function ExpenseListTable({expensesList,refreshData}) {
         <div className='grid grid-cols-5 bg-slate-200 p-2'>
             <h2>Name</h2>
             <h2>Amount</h2>
-            <h2>date</h2>
-            <h2>createdBy</h2>
+            <h2>Date</h2>
+            <h2>Created By</h2>
             <h2 className='ml-10'>Action</h2>
         </div>
         {expensesList.map((expenses,index)=>(

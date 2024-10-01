@@ -22,17 +22,17 @@ function BudgetItem({ budget }) {
           <h2 className="font-bold">{budget.name}</h2>
         </div>
         <div>
-          <h2 className="text-lg font-bold text-primary">${budget.amount}</h2>
+          <h2 className="text-lg font-bold text-primary">₹{budget.amount}</h2>
         </div>
       </div>
       <div className="mt-10">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xs text-slate-400">${budget.totalSpend ? budget.totalSpend : 0} Spend</h2>
+          <h2 className="text-xs text-slate-400">₹{budget.totalSpend ? budget.totalSpend : 0} Spend</h2>
           {/* Conditionally show "overdue" or "remaining" */}
           {isOverdue ? (
-            <h2 className="text-xs text-red-500">${Math.abs(remainingAmount)} Overdue</h2>
+            <h2 className="text-xs text-red-500">₹{Math.abs(remainingAmount)} Overdue</h2>
           ) : (
-            <h2 className="text-xs text-slate-400">${remainingAmount} Remaining</h2>
+            <h2 className="text-xs text-slate-400">₹{remainingAmount} Remaining</h2>
           )}
         </div>
         <div className="w-full bg-slate-300 h-2 rounded-full">

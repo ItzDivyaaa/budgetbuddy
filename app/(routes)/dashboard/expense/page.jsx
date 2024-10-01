@@ -16,6 +16,7 @@ function ExpensesScreen() {
           .select({
             ...getTableColumns(Expenses), 
             budgetName: Budgets.name, 
+            date: Expenses.date,
           })
           .from(Expenses) 
           .leftJoin(Budgets, eq(Expenses.budgetId, Budgets.id)) 
@@ -29,22 +30,55 @@ function ExpensesScreen() {
     }
   };
 
+  // const downloadCSV = () => {
+  //   const csvRows = [];
+  //   // const headers = ['ID', 'Name', 'Amount', 'Budget Name', 'Created By'];
+  //   const headers = ['ID', 'Name', 'Amount', 'Budget Name', 'Date', 'Created By']; // Add 'Date' to the headers
+ 
+  //   csvRows.push(headers.join(','));
+
+  //   expensesList.forEach(expense => {
+  //     const row = [
+  //       expense.id,
+  //       expense.name,
+  //       expense.amount,
+  //       expense.budgetName || 'N/A',
+  //       expense.date.toLocaleDateString(), // Add the date to the row
+
+  //       expense.createdBy,
+  //     ];
+  //     csvRows.push(row.join(','));
+  //   });
+
+  //   const csvString = csvRows.join('\n');
+  //   const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+  //   const link = document.createElement('a');
+  //   const url = URL.createObjectURL(blob);
+  //   link.setAttribute('href', url);
+  //   link.setAttribute('download', 'expenses.csv');
+  //   link.style.visibility = 'hidden';
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
+
   const downloadCSV = () => {
     const csvRows = [];
-    const headers = ['ID', 'Name', 'Amount', 'Budget Name', 'Created By'];
+    const headers = ['ID', 'Name', 'Amount', 'Budget Name', 'Date', 'Created By'];
     csvRows.push(headers.join(','));
-
+  
     expensesList.forEach(expense => {
       const row = [
         expense.id,
         expense.name,
         expense.amount,
         expense.budgetName || 'N/A',
+        new Date(expense.date).toLocaleDateString(), // Convert the date string to a Date object
         expense.createdBy,
       ];
       csvRows.push(row.join(','));
     });
-
+  
     const csvString = csvRows.join('\n');
     const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
@@ -56,7 +90,6 @@ function ExpensesScreen() {
     link.click();
     document.body.removeChild(link);
   };
-
   useEffect(() => {
     fetchAllExpenses();
   }, [user]);
@@ -79,6 +112,8 @@ function ExpensesScreen() {
             <th className="bg-gray-100 border border-gray-300 p-2 text-left">Name</th>
             <th className="bg-gray-100 border border-gray-300 p-2 text-left">Amount</th>
             <th className="bg-gray-100 border border-gray-300 p-2 text-left">Budget Name</th>
+            <th className="bg-gray-100 border border-gray-300 p-2 text-left">Date</th>
+
             <th className="bg-gray-100 border border-gray-300 p-2 text-left">Created By</th>
           </tr>
         </thead>
@@ -87,8 +122,9 @@ function ExpensesScreen() {
             <tr key={expense.id} className="hover:bg-gray-100">
               <td className="border border-gray-300 p-2">{expense.id}</td>
               <td className="border border-gray-300 p-2">{expense.name}</td>
-              <td className="border border-gray-300 p-2">${expense.amount}</td>
+              <td className="border border-gray-300 p-2">₹{expense.amount}</td>
               <td className="border border-gray-300 p-2">{expense.budgetName || 'N/A'}</td>
+              <td className="border border-gray-300 p-2">{new Date(expense.date).toLocaleDateString()}</td>
               <td className="border border-gray-300 p-2">{expense.createdBy}</td>
             </tr>
           ))}

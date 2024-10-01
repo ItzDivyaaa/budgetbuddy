@@ -77,7 +77,7 @@ function EditBudget({budgetInfo,refreshData}) {
       }}
       />
     </div>
-    <div>
+    {/* <div>
         <h2>Budget Name</h2>
         <Input placeholder="e.g. Home Decor"
         defaultValue={budgetInfo?.name}
@@ -94,7 +94,24 @@ function EditBudget({budgetInfo,refreshData}) {
         onChange={(e)=>setAmount(e.target.value)}
         />
 
-    </div>
+    </div> */}
+    <div>
+  <h2>Budget Name</h2>
+  <Input 
+    placeholder="e.g. Home Decor"
+    value={name}
+    onChange={(e)=>setName(e.target.value)}
+  />
+</div>
+<div>
+  <h2>Budget Amount</h2>
+  <Input 
+    type="number"
+    placeholder="e.g.₹5000"
+    value={amount}
+    onChange={(e)=>setAmount(e.target.value)}
+  />
+</div>
    
     </div>
       </DialogDescription>
