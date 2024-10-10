@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Header from "./_components/header";
+import Header from "./_components/Header";
 import Hero from "./_components/Hero";
 // import { currentUser } from "@clerk/nextjs";
 import { ClerkProvider,SignedIn,SignedOut, SignIn } from "@clerk/nextjs";
