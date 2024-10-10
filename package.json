@@ -9,7 +9,6 @@
     "lint": "next lint",
     "db:push": "npx drizzle-kit push",
     "db:studio": "npx drizzle-kit studio"
-  
   },
   "dependencies": {
     "@clerk/nextjs": "^5.5.2",
@@ -27,6 +26,7 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-router-dom": "^6.26.2",
     "recharts": "^2.12.7",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
